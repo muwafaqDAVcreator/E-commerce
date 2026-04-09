@@ -109,7 +109,7 @@ class DatabaseSeeder extends Seeder
             'product_id' => $p1->id
         ], [
             'quantity' => 1,
-            'price' => $p1->price
+            'price_at_purchase' => $p1->price
         ]);
 
         // Wishlists
