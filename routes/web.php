@@ -19,7 +19,7 @@ use App\Http\Controllers\InteractionController;
 
 use App\Http\Controllers\UserDashboardController;
 
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
@@ -47,7 +47,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Support\TicketController as SupportTicketController;
 
-Route::middleware(['auth', 'verified', 'role:Admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'role:Admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('products', AdminProductController::class);
     Route::resource('categories', AdminCategoryController::class)->only(['index', 'store', 'destroy']);
@@ -56,6 +56,6 @@ Route::middleware(['auth', 'verified', 'role:Admin'])->prefix('admin')->name('ad
     Route::resource('users', AdminUserController::class);
 });
 
-Route::middleware(['auth', 'verified', 'role:Support'])->prefix('support')->name('support.')->group(function () {
+Route::middleware(['auth', 'role:Support'])->prefix('support')->name('support.')->group(function () {
     Route::resource('tickets', SupportTicketController::class);
 });
