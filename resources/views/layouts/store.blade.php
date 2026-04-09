@@ -278,7 +278,7 @@
                         <li><a href="{{ route('home') }}" class="text-white-50 text-decoration-none hover-white transition-all">All Components</a></li>
                         <li><a href="{{ route('cart.index') }}" class="text-white-50 text-decoration-none hover-white transition-all">Shopping Cart</a></li>
                         <li><a href="{{ route('register') }}" class="text-white-50 text-decoration-none hover-white transition-all">Create Account</a></li>
-                        <li><a href="#" class="text-white-50 text-decoration-none hover-white transition-all">Track Order</a></li>
+                        <li><a href="{{ route('dashboard') }}" class="text-white-50 text-decoration-none hover-white transition-all">Track Order</a></li>
                     </ul>
                 </div>
                 
