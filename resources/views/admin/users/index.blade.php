@@ -16,7 +16,7 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Joined</th>
-                <th class="text-end">Update Role</th>
+                <th class="text-end">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -43,8 +43,13 @@
                         <span class="badge {{ $roleBadge }} rounded-pill px-3 py-2">{{ $user->role }}</span>
                     </td>
                     <td class="text-muted small"><i class="far fa-calendar-alt me-1"></i>{{ $user->created_at->format('M d, Y') }}</td>
-                    <td class="text-end">
+                    <td class="text-end d-flex justify-content-end gap-2">
                         <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-light text-primary rounded-circle shadow-sm" style="width: 35px; height: 35px; line-height: 22px;"><i class="fas fa-user-edit"></i></a>
+                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-light text-danger rounded-circle shadow-sm" style="width: 35px; height: 35px; line-height: 22px;"><i class="fas fa-trash-alt"></i></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

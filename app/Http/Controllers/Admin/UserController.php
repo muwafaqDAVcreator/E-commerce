@@ -28,4 +28,14 @@ class UserController extends Controller
         $user->update($validated);
         return redirect()->route('admin.users.index')->with('success', 'User role updated successfully.');
     }
+
+    public function destroy(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return redirect()->route('admin.users.index')->with('error', 'You cannot delete yourself.');
+        }
+
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+    }
 }
