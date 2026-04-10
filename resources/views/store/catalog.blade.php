@@ -192,7 +192,7 @@
                         </p>
 
                         <div class="d-flex justify-content-between align-items-end mt-auto mb-3">
-                            <div class="price-tag">${{ number_format($product->price, 2) }}</div>
+                            <div class="price-tag">Rs{{ number_format($product->price, 2) }}</div>
                             @if($product->stock_quantity > 0)
                             <span class="text-success small fw-bold"><i class="fas fa-circle me-1" style="font-size: 8px;"></i>In Stock</span>
                             @else

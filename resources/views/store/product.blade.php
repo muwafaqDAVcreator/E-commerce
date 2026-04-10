@@ -51,7 +51,7 @@
         <h1 class="fw-bold display-5 mb-3">{{ $product->name }}</h1>
 
         <h2 class="fw-bold mb-4" style="background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3rem;">
-            ${{ number_format($product->price, 2) }}
+            Rs{{ number_format($product->price, 2) }}
         </h2>
 
         <div class="bg-white p-4 rounded-4 shadow-sm mb-4 border-start border-4 border-primary">

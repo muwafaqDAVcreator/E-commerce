@@ -68,7 +68,7 @@
                                 @endif
                                 <div>
                                     <h5 class="fw-bold mb-1 text-dark">{{ $details['name'] }}</h5>
-                                    <span class="text-primary fw-bold">${{ number_format($details['price'], 2) }}</span>
+                                    <span class="text-primary fw-bold">Rs{{ number_format($details['price'], 2) }}</span>
                                 </div>
                             </div>
                             <div class="col-6 col-md-3">
@@ -80,7 +80,7 @@
                                 </form>
                             </div>
                             <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
-                                <div class="fw-bold fs-5 me-4">${{ number_format($details['price'] * $details['quantity'], 2) }}</div>
+                                <div class="fw-bold fs-5 me-4">Rs{{ number_format($details['price'] * $details['quantity'], 2) }}</div>
                                 <form action="{{ route('cart.destroy', $id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -105,7 +105,7 @@
 
                 <div class="d-flex justify-content-between mb-3 fs-5">
                     <span class="text-secondary fw-semibold">Subtotal</span>
-                    <span class="fw-bold">${{ number_format($total, 2) }}</span>
+                    <span class="fw-bold">Rs{{ number_format($total, 2) }}</span>
                 </div>
 
                 <div class="d-flex justify-content-between mb-4 pb-4 border-bottom text-secondary">
@@ -115,7 +115,7 @@
 
                 <div class="d-flex justify-content-between fw-bold mb-5" style="font-size: 1.8rem;">
                     <span>Total</span>
-                    <span class="text-primary">${{ number_format($total, 2) }}</span>
+                    <span class="text-primary">Rs{{ number_format($total, 2) }}</span>
                 </div>
 
                 @if(Auth::check())

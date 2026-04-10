@@ -285,8 +285,8 @@
                 <div class="col-lg-3 col-md-4">
                     <h5 class="fw-bold text-white mb-4">Contact Info</h5>
                     <ul class="list-unstyled d-flex flex-column gap-3 mb-0 text-white-50">
-                        <li class="d-flex"><i class="fas fa-map-marker-alt mt-1 me-3 text-primary"></i> 123 Silicon Blvd, Tech District, CA 90210</li>
-                        <li class="d-flex"><i class="fas fa-phone-alt mt-1 me-3 text-primary"></i> +1 (800) 555-0199</li>
+                        <li class="d-flex"><i class="fas fa-map-marker-alt mt-1 me-3 text-primary"></i> 123 spillroad, Tech District, colombo</li>
+                        <li class="d-flex"><i class="fas fa-phone-alt mt-1 me-3 text-primary"></i> +94 71 493 0480</li>
                         <li class="d-flex"><i class="fas fa-envelope mt-1 me-3 text-primary"></i> support@techparts.test</li>
                     </ul>
                 </div>
