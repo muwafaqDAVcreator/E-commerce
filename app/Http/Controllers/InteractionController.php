@@ -52,11 +52,13 @@ class InteractionController extends Controller
     {
         $request->validate([
             'subject' => 'required|string|max:255',
-            'message' => 'required|string|max:2000'
+            'message' => 'required|string|max:2000',
+            'product_id' => 'nullable|exists:products,id'
         ]);
 
         Ticket::create([
             'user_id' => Auth::id(),
+            'product_id' => $request->product_id,
             'subject' => $request->subject,
             'message' => $request->message,
             'status' => 'Open'

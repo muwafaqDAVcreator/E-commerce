@@ -184,6 +184,9 @@
                                     <h5 class="mb-0 fw-bold">{{ $ticket->subject }}</h5>
                                     <span class="badge {{ $ticket->status === 'Open' ? 'bg-danger' : 'bg-success' }} rounded-pill px-3">{{ $ticket->status }}</span>
                                 </div>
+                                @if($ticket->product)
+                                    <p class="mb-1 text-primary small fw-bold"><i class="fas fa-tag me-1"></i> {{ $ticket->product->name }}</p>
+                                @endif
                                 <p class="mb-2 text-secondary text-truncate" style="max-width: 80%;">{{ $ticket->message }}</p>
                                 <div class="text-muted small d-flex align-items-center">
                                     <i class="far fa-clock me-1"></i> {{ $ticket->created_at->format('M d, Y') }}
@@ -304,6 +307,15 @@
                 @csrf
                 <div class="modal-body p-4">
                     <p class="text-muted small mb-4">Need help with an order or product issue? Submit a ticket and our support team will respond within 24 hours.</p>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-secondary text-uppercase tracking-wider" style="font-size: 0.8rem;">Related Product <span class="fw-normal text-muted">(Optional)</span></label>
+                        <select name="product_id" class="form-select bg-light border-0 shadow-sm rounded-3 py-2">
+                            <option value="">-- General Support / Order Issue --</option>
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label fw-bold text-secondary text-uppercase tracking-wider" style="font-size: 0.8rem;">Subject</label>
                         <input type="text" name="subject" class="form-control bg-light border-0 shadow-sm rounded-3 py-2" required placeholder="Briefly describe your issue">

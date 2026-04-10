@@ -16,10 +16,11 @@ class UserDashboardController extends Controller
         $user = Auth::user();
         
         $orders = Order::with('items.product')->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
-        $tickets = Ticket::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        $tickets = Ticket::with('product')->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
         $wishlists = Wishlist::with('product')->where('user_id', $user->id)->get();
         $reviews = Review::with('product')->where('user_id', $user->id)->get();
+        $products = \App\Models\Product::orderBy('name')->get();
 
-        return view('store.dashboard', compact('orders', 'tickets', 'wishlists', 'reviews', 'user'));
+        return view('store.dashboard', compact('orders', 'tickets', 'wishlists', 'reviews', 'user', 'products'));
     }
 }

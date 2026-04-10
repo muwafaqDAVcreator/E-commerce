@@ -94,6 +94,18 @@
             </a>
             @endif
         </div>
+
+        <div class="mt-4 pt-3 border-top">
+            @if(Auth::check())
+                <button type="button" class="btn btn-outline-primary rounded-pill fw-bold bg-white shadow-sm hover-scale" data-bs-toggle="modal" data-bs-target="#productEnquiryModal">
+                    <i class="fas fa-question-circle me-1"></i> Have a question about this product?
+                </button>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-outline-primary rounded-pill fw-bold bg-white shadow-sm hover-scale">
+                    <i class="fas fa-question-circle me-1"></i> Log in to ask a question
+                </a>
+            @endif
+        </div>
     </div>
 </div>
 
@@ -180,4 +192,38 @@
         </div>
     </div>
 </div>
+
+@if(Auth::check())
+<!-- Product Enquiry Modal -->
+<div class="modal fade" id="productEnquiryModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="modal-header bg-primary text-white border-0 py-3">
+                <h5 class="modal-title fw-bold"><i class="fas fa-headset me-2"></i>Product Enquiry</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{ route('interactions.ticket.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <div class="modal-body p-4">
+                    <p class="text-muted small mb-4">Have a specific question about the <strong>{{ $product->name }}</strong>? Ask our hardware experts directly!</p>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-secondary text-uppercase tracking-wider" style="font-size: 0.8rem;">Subject</label>
+                        <input type="text" name="subject" class="form-control bg-light border-0 shadow-sm rounded-3 py-2" value="Enquiry: {{ $product->name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold text-secondary text-uppercase tracking-wider" style="font-size: 0.8rem;">Your Question</label>
+                        <textarea name="message" class="form-control bg-light border-0 shadow-sm rounded-3 py-2" rows="5" required placeholder="What would you like to know about this hardware?"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm">Submit Enquiry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
+
 @endsection
